@@ -3,150 +3,282 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kallery Galleria \u2014 Full Market Report</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<title>Kallery Galleria — Investment Report</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
 <style>
 :root {
-  --ink: #1a1409;
-  --paper: #f5f0e8;
-  --paper2: #ede8de;
-  --paper3: #e4ddd0;
-  --gold: #b8860b;
-  --gold2: #d4a017;
-  --gold-light: #f0d060;
-  --rust: #8b2500;
-  --green: #1a5c2a;
-  --green2: #2d8a45;
-  --slate: #2c3a4a;
-  --muted: #6b5e4e;
-  --faint: #b0a090;
-  --border: rgba(184,134,11,0.25);
-  --shadow: 0 2px 20px rgba(26,20,9,0.12);
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: 'Lato', sans-serif;
-  font-size: 15px;
-  line-height: 1.65;
+  --bg:#0c0c0c;
+  --card:#111;
+  --accent:#ff6a00;
+  --accent2:#ff8c00;
+  --text:#fff;
+  --muted:#aaa;
 }
 
-/* \u2500\u2500\u2500 COVER \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
-.cover {
-  background: var(--ink);
-  color: var(--paper);
-  padding: 48px 24px 40px;
-  position: relative;
-  overflow: hidden;
-  min-height: 380px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-.cover-grid {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(184,134,11,0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(184,134,11,0.08) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-.cover-glow {
-  position: absolute;
-  top: -80px; right: -80px;
-  width: 400px; height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(212,160,23,0.18) 0%, transparent 65%);
-}
-.cover-tag {
-  font-size: 10px; letter-spacing: 4px;
-  color: var(--gold2); text-transform: uppercase;
-  margin-bottom: 14px; position: relative;
-}
-.cover-title {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(32px, 10vw, 56px);
-  font-weight: 900; line-height: 1.05;
-  color: #fff; position: relative;
-  margin-bottom: 8px;
-}
-.cover-title span { color: var(--gold2); }
-.cover-sub {
-  font-size: 13px; color: #a09070; position: relative;
-  margin-bottom: 28px; font-style: italic;
-}
-.cover-pills {
-  display: flex; gap: 10px; flex-wrap: wrap; position: relative;
-}
-.cover-pill {
-  background: rgba(212,160,23,0.12);
-  border: 1px solid rgba(212,160,23,0.35);
-  border-radius: 2px; padding: 6px 14px;
-  font-size: 12px; color: var(--gold-light);
-  font-weight: 700;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:Lato;
+  background:var(--bg);
+  color:var(--text);
+  scroll-behavior:smooth;
 }
 
-/* \u2500\u2500\u2500 NAV \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
-.sticky-nav {
-  position: sticky; top: 0; z-index: 100;
-  background: var(--ink);
-  border-bottom: 1px solid rgba(212,160,23,0.3);
-  display: flex; overflow-x: auto; scrollbar-width: none;
+/* NAV */
+nav{
+  position:sticky;
+  top:0;
+  background:#000;
+  display:flex;
+  overflow-x:auto;
+  z-index:999;
 }
-.sticky-nav::-webkit-scrollbar { display: none; }
-.nav-btn {
-  flex-shrink: 0;
-  background: none; border: none;
-  border-bottom: 2px solid transparent;
-  color: #806040; font-family: 'Lato', sans-serif;
-  font-size: 11px; letter-spacing: 1.5px;
-  text-transform: uppercase; font-weight: 700;
-  padding: 13px 18px; cursor: pointer;
-  transition: all 0.2s; white-space: nowrap;
+nav a{
+  padding:14px 16px;
+  font-size:12px;
+  color:#aaa;
+  text-decoration:none;
+  white-space:nowrap;
 }
-.nav-btn.active { color: var(--gold2); border-bottom-color: var(--gold2); }
-
-/* \u2500\u2500\u2500 SECTIONS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
-.section { display: none; padding: 28px 20px 60px; }
-.section.active { display: block; }
-
-/* \u2500\u2500\u2500 CHAPTER HEADER \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
-.chapter {
-  margin-bottom: 28px;
-  padding-bottom: 16px;
-  border-bottom: 2px solid var(--paper3);
-  position: relative;
-}
-.chapter::before {
-  content: '';
-  position: absolute; bottom: -2px; left: 0;
-  width: 60px; height: 2px;
-  background: var(--gold);
-}
-.chapter-eye {
-  font-size: 10px; letter-spacing: 3px;
-  color: var(--gold); text-transform: uppercase;
-  margin-bottom: 6px; font-weight: 700;
-}
-.chapter-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 26px; font-weight: 700;
-  color: var(--ink); line-height: 1.2;
-}
-.chapter-desc {
-  font-size: 13px; color: var(--muted);
-  margin-top: 6px; font-style: italic;
+nav a:hover{
+  color:var(--accent);
 }
 
-/* \u2500\u2500\u2500 CARD \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
-.card {
-  background: #fff;
-  border: 1px solid var(--paper3);
-  border-radius: 4px;
-  padding: 20px;
-  margin-bottom: 16px;
-  box-shadow: var(--shadow);
+/* HERO */
+.hero{
+  padding:60px 20px;
+  background:linear-gradient(135deg,#ff4d00,#ff8c00);
+}
+.hero h1{
+  font-family:Playfair Display;
+  font-size:48px;
+}
+.hero p{
+  margin-top:10px;
+}
+
+/* SECTION */
+.section{
+  padding:60px 20px;
+}
+.container{
+  max-width:1100px;
+  margin:auto;
+}
+
+/* CARD */
+.card{
+  background:var(--card);
+  padding:20px;
+  border-radius:12px;
+  margin-bottom:20px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+/* TITLES */
+h2{
+  font-family:Playfair Display;
+  margin-bottom:20px;
+}
+
+/* BAR */
+.bar{
+  background:#222;
+  height:20px;
+  border-radius:10px;
+  overflow:hidden;
+}
+.bar-fill{
+  height:100%;
+  background:linear-gradient(90deg,#ff6a00,#ff8c00);
+}
+
+/* BUTTON */
+.btn{
+  background:var(--accent);
+  padding:12px 20px;
+  display:inline-block;
+  border-radius:10px;
+  text-decoration:none;
+  color:#fff;
+  margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+<a href="#overview">Overview</a>
+<a href="#demographics">Demographics</a>
+<a href="#economy">Economy</a>
+<a href="#tenants">Tenants</a>
+<a href="#valuation">Valuation</a>
+<a href="#swot">SWOT</a>
+<a href="#marketing">Marketing</a>
+<a href="#verdict">Verdict</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<h1>Kallery Galleria</h1>
+<p>Premium Commercial Investment · Karuvannur</p>
+<p>₹3–3.5L Monthly Potential · ₹8.5 Cr Asset</p>
+</div>
+</section>
+
+<!-- OVERVIEW -->
+<section id="overview" class="section">
+<div class="container">
+<h2>Overview</h2>
+
+<div class="grid">
+<div class="card">
+<b>Size</b><br>12,000 sq.ft
+</div>
+<div class="card">
+<b>Land</b><br>30 cents
+</div>
+<div class="card">
+<b>Floors</b><br>3 + terrace
+</div>
+<div class="card">
+<b>USP</b><br>Parking + Highway
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- DEMOGRAPHICS -->
+<section id="demographics" class="section">
+<div class="container">
+<h2>Demographics</h2>
+
+<div class="card">
+<p>5,000+ families nearby</p>
+<div class="bar"><div class="bar-fill" style="width:80%"></div></div>
+</div>
+
+<div class="card">
+<p>10,000+ total catchment</p>
+<div class="bar"><div class="bar-fill" style="width:95%"></div></div>
+</div>
+
+</div>
+</section>
+
+<!-- ECONOMY -->
+<section id="economy" class="section">
+<div class="container">
+<h2>Economy</h2>
+
+<div class="grid">
+<div class="card">
+<b>Avg Income</b><br>₹45k–₹75k
+</div>
+<div class="card">
+<b>NRI Income</b><br>₹1.5L+
+</div>
+<div class="card">
+<b>Spending</b><br>High
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- TENANTS -->
+<section id="tenants" class="section">
+<div class="container">
+<h2>Best Tenants</h2>
+
+<div class="grid">
+<div class="card">Supermarket</div>
+<div class="card">Hospital</div>
+<div class="card">Showroom</div>
+<div class="card">Gym</div>
+</div>
+
+</div>
+</section>
+
+<!-- VALUATION -->
+<section id="valuation" class="section">
+<div class="container">
+<h2>Valuation</h2>
+
+<div class="card">
+₹29/sq.ft (market aligned)
+</div>
+
+<div class="card">
+₹8.5 Cr fair value
+</div>
+
+</div>
+</section>
+
+<!-- SWOT -->
+<section id="swot" class="section">
+<div class="container">
+<h2>SWOT</h2>
+
+<div class="grid">
+<div class="card">
+<b>Strength</b><br>Location, Parking
+</div>
+<div class="card">
+<b>Weakness</b><br>High cost
+</div>
+<div class="card">
+<b>Opportunity</b><br>NRI market
+</div>
+<div class="card">
+<b>Threat</b><br>Competition
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- MARKETING -->
+<section id="marketing" class="section">
+<div class="container">
+<h2>Marketing Strategy</h2>
+
+<div class="card">Target NRIs</div>
+<div class="card">WhatsApp groups</div>
+<div class="card">Direct business outreach</div>
+
+</div>
+</section>
+
+<!-- VERDICT -->
+<section id="verdict" class="section">
+<div class="container">
+<h2>Final Verdict</h2>
+
+<div class="card">
+This is not just a building — it’s a high-yield commercial asset.
+</div>
+
+<a class="btn">Contact Now</a>
+
+</div>
+</section>
+
+</body>
+</html>  box-shadow: var(--shadow);
 }
 .card-title {
   font-size: 10px; letter-spacing: 2px;
